@@ -5,15 +5,17 @@ class GlicemicController {
   async store(req, res) {
     const { result, foods } = req.body;
 
-    const user = await User.findByPk(req.body.userId);
-    const carbohydrate;
+    // const user = await User.findByPk(req.body.userId);
+    // console.log(req.body.userId);
+    // console.log(result);
+    let carbohydrate = 0;
 
-    foods.forEach(food => {await foodList.filter(
-      food.id === foodList.id
-    ) carbohydrate = carbohydrate+(food.portion * foodList.carbohydrate)   
-    })
+    await foods.forEach(food => {
+      carbohydrate += food.portions * food.carbohydrate;
+      console.log(carbohydrate);
+    });
 
-
+    return res.json({ carbohydrate });
   }
 }
 
