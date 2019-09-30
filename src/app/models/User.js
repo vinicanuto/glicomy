@@ -11,6 +11,7 @@ class User extends Model {
         password_hash: Sequelize.STRING,
         active: Sequelize.BOOLEAN,
         basal: Sequelize.DECIMAL,
+        target: Sequelize.DECIMAL,
       },
       {
         sequelize,
