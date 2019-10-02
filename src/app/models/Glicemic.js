@@ -1,13 +1,14 @@
 import Sequelize, { Model } from 'sequelize';
 
-class GlicemicTest extends Model {
+class Glicemic extends Model {
   static init(sequelize) {
     super.init(
       {
         result: Sequelize.DECIMAL,
-        target: Sequelize.DECIMAL,
+        target_user: Sequelize.DECIMAL,
         carbohydrate: Sequelize.DECIMAL,
         insulimn: Sequelize.DECIMAL,
+        date: Sequelize.DATE,
       },
       { sequelize }
     );
@@ -19,4 +20,4 @@ class GlicemicTest extends Model {
   }
 }
 
-export default GlicemicTest;
+export default Glicemic;

@@ -2,7 +2,7 @@ import Sequelize from 'sequelize';
 import databaseConfig from '../config/database';
 
 import User from '../app/models/User';
-import Glicemic from '../app/models/GlicemicTest';
+import Glicemic from '../app/models/Glicemic';
 
 const models = [User, Glicemic];
 
