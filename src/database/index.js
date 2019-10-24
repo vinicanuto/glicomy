@@ -4,8 +4,9 @@ import databaseConfig from '../config/database';
 import User from '../app/models/User';
 import Glicemic from '../app/models/Glicemic';
 import Food from '../app/models/Food';
+import GlicemicFoods from '../app/models/GlicemicFoods';
 
-const models = [User, Glicemic, Food];
+const models = [User, Glicemic, Food, GlicemicFoods];
 
 class Database {
   constructor() {

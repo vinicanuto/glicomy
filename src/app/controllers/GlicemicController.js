@@ -2,6 +2,7 @@ import { Op } from 'sequelize';
 import Glicemic from '../models/Glicemic';
 import User from '../models/User';
 import Food from '../models/Food';
+import GlicemicFoods from '../models/GlicemicFoods';
 
 class GlicemicController {
   async store(req, res) {
@@ -37,6 +38,16 @@ class GlicemicController {
       date: new Date(),
       user_id: userId,
     });
+
+    if (foodId) {
+      foodId.forEach(async food => {
+        await GlicemicFoods.create({
+          glicemics_id: glic.id,
+          food_id: food.id,
+          portion: food.portions,
+        });
+      });
+    }
 
     return res.json({ correction, counting, doses, carbohydrate });
   }
