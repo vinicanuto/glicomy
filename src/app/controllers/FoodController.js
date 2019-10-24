@@ -1,4 +1,5 @@
 import foodList from '../../data/foodList.json';
+import Food from '../models/Food';
 
 class FoodController {
   async index(req, res) {
@@ -18,6 +19,43 @@ class FoodController {
     }
     const foods = await foodList;
     return res.json(foods);
+  }
+
+  async populate(req, res) {
+    const carboQtd = 0.0;
+    const carboUnit = 'g';
+
+    await foodList.forEach(food => {
+      const { description, base_qty, base_unit } = food;
+
+      if (food.attributes.carbohydrate === undefined) {
+        const qty = carboQtd;
+        const unit = carboUnit;
+
+        Food.create({
+          description,
+          base_qty,
+          base_unit,
+          carbo: qty,
+          carbo_unit: unit,
+        });
+      } else {
+        let { qty, unit } = food.attributes.carbohydrate;
+        if (isNaN(qty) || qty === null) {
+          qty = 0;
+        }
+
+        Food.create({
+          description,
+          base_qty,
+          base_unit,
+          carbo: qty,
+          carbo_unit: unit,
+        });
+      }
+    });
+
+    return res.json({ message: 'Populate ok' });
   }
 }
 

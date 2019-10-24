@@ -9,6 +9,7 @@ const routes = new Router();
 routes.post('/user', UserController.store);
 
 routes.get('/foods', FoodController.index);
+routes.get('/food/populate', FoodController.populate);
 routes.get('/foods/:foodId', FoodController.index);
 routes.get('/foods/category/:categoryId', FoodController.index);
 
