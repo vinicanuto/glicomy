@@ -1,15 +1,34 @@
+import { Op } from 'sequelize';
 import Glicemic from '../models/Glicemic';
 import User from '../models/User';
+import Food from '../models/Food';
 
 class GlicemicController {
   async store(req, res) {
     const { result, foods } = req.body;
 
-    const user = await User.findByPk(req.body.userId);
+    const foodId = [];
+
+    foods.map(fd => {
+      return foodId.push(fd.id);
+    });
+
+    const food = await Food.findAll({
+      where: {
+        id: {
+          [Op.in]: foodId,
+        },
+      },
+    });
+
+    console.log(food);
+
+    // const user = await User.findByPk(req.body.userId);
     // console.log(req.body.userId);
     // console.log(result);
-    let carbohydrate = 0;
+    const carbohydrate = 0;
 
+    /*
     await foods.forEach(food => {
       carbohydrate += food.portions * food.carbohydrate;
       console.log(carbohydrate);
@@ -29,9 +48,10 @@ class GlicemicController {
       insulimn: doses,
       date: new Date(),
       user_id: userId,
-    });
+    }); 
 
-    return res.json({ correction, counting, doses });
+    return res.json({ correction, counting, doses }); */
+    return res.json({ message: 'teste' });
   }
 }
 
