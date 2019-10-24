@@ -16,6 +16,10 @@ class Food extends Model {
     );
     return this;
   }
+
+  static associate(models) {
+    this.belongsTo(models.CategoryFood, { foreignKey: 'category_food_id' });
+  }
 }
 
 export default Food;

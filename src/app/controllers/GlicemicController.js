@@ -24,6 +24,10 @@ class GlicemicController {
 
     const user = await User.findByPk(req.body.userId);
 
+    if (!user) {
+      return res.status(404).json({ message: 'Usuario não encontrado' });
+    }
+
     const { target: target_user, id: userId } = user;
 
     const correction = (result - user.target) / user.basal;

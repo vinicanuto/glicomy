@@ -9,7 +9,6 @@ const routes = new Router();
 routes.post('/user', UserController.store);
 
 routes.get('/foods', FoodController.index);
-routes.get('/food/populate', FoodController.populate);
 routes.get('/foods/:foodId', FoodController.index);
 routes.get('/foods/category/:categoryId', FoodController.index);
 
@@ -17,5 +16,8 @@ routes.get('/categories/', CategoryFoodController.index);
 routes.get('/categories/:categoryId', CategoryFoodController.index);
 
 routes.post('/glicemic', GlicemicController.store);
+
+routes.get('/food/populate', FoodController.populate);
+routes.get('/categoryfood/populate', CategoryFoodController.populate);
 
 export default routes;
