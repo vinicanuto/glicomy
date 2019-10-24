@@ -3,21 +3,22 @@ import Food from '../models/Food';
 
 class FoodController {
   async index(req, res) {
+    /* Criar campo categoria id nos alimentos, criar rota para listar alimentos por categoria
     const { categoryId } = req.params;
     if (categoryId) {
       const foods = await foodList.filter(
         food => food.category_id.toString() === categoryId.toString()
       );
       return res.json(foods);
-    }
+    } */
+
     const { foodId } = req.params;
     if (foodId) {
-      const foods = await foodList.filter(
-        food => food.id.toString() === foodId.toString()
-      );
+      const foods = await Food.findByPk(foodId);
       return res.json(foods);
     }
-    const foods = await foodList;
+
+    const foods = await Food.findAll({ limit: 20 });
     return res.json(foods);
   }
 
